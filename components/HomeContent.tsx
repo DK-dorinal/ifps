@@ -149,14 +149,14 @@ export default function HomeContent() {
 
           {/* ROADMAP MISSION */}
           <div className="mb-20">
-            <h3 className="text-2xl font-bold text-blue-800 mb-8 flex items-center gap-3">
+            <h3 className="text-2xl font-bold text-blue-800 mb-10 flex items-center gap-3">
               <Target size={32} className="text-blue-600" /> Notre Mission : Votre parcours
             </h3>
             
             <div className="relative">
               <div className="absolute left-0 right-0 top-1/2 h-1 bg-blue-200 transform -translate-y-1/2 hidden md:block"></div>
 
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
                 {[
                   { icon: UserPlus, title: "Inscription", desc: "Déposez votre dossier et validez votre admission.", color: "bg-blue-100 text-blue-700" },
                   { icon: BookOpen, title: "Formation", desc: "Apprenez les compétences métiers avec des experts (12 mois).", color: "bg-green-100 text-green-700" },
@@ -168,7 +168,7 @@ export default function HomeContent() {
                     <div className={`w-16 h-16 rounded-full flex items-center justify-center ${step.color} shadow-lg mb-4 border-4 border-white group-hover:scale-110 transition-transform`}>
                       <step.icon size={32} />
                     </div>
-                    <h4 className="font-bold text-gray-800 mb-2">{step.title}</h4>
+                    <h4 className="font-bold text-gray-800 mb-2 mt-10">{step.title}</h4>
                     <p className="text-sm text-gray-600">{step.desc}</p>
                   </div>
                 ))}
@@ -178,13 +178,13 @@ export default function HomeContent() {
 
           {/* VISION */}
           <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
-            <h3 className="text-2xl font-bold text-green-800 mb-8 flex items-center gap-3">
+            <h3 className="text-2xl font-bold text-green-800 mb-10 flex items-center gap-3">
               <Eye size={32} className="text-green-600" /> Notre Vision : Une ambition mondiale
             </h3>
 
-            <div className="space-y-8">
+            <div className="space-y-12">
               <div>
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <p className="font-semibold text-gray-800 flex items-center gap-2">
                     <Globe size={20} className="text-green-600" /> Ancrer notre excellence au Cameroun
                   </p>
@@ -202,7 +202,7 @@ export default function HomeContent() {
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <p className="font-semibold text-gray-800 flex items-center gap-2">
                     <Globe size={20} className="text-blue-600" /> Rayonner en Afrique Centrale
                   </p>
@@ -220,7 +220,7 @@ export default function HomeContent() {
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <p className="font-semibold text-gray-800 flex items-center gap-2">
                     <Globe size={20} className="text-amber-600" /> Opportunités au Canada, Europe & USA
                   </p>
@@ -242,7 +242,7 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ================= SECTION POURQUOI NOUS CHOISIR (AVEC IMAGES) ================= */}
+      {/* ================= SECTION POURQUOI NOUS CHOISIR ================= */}
       <section id="apropos" className="py-20 px-6 md:px-20 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -304,32 +304,46 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* ================= BANNIERE APPEL A L'ACTION (AVEC IMAGE) ================= */}
-      <section id="rdv" className="relative py-20 px-6 md:px-20 bg-blue-900 overflow-hidden">
+      {/* ================= BANNIERE APPEL A L'ACTION (TEXTE EN BAS, BOUTON DISCRET) ================= */}
+      <section id="rdv" className="relative h-[500px] py-0 px-6 md:px-20 overflow-hidden">
         {/* Image de fond */}
         <img 
           src="/images/baniere.jpg" 
           alt="Bannière" 
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         
         {/* Overlay pour la lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 to-blue-900/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
 
-        <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-between py-12">
+          
+          {/* TITRE EN HAUT */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Prêt à lancer votre carrière ?</h2>
-            <p className="text-blue-200">Prenez rendez-vous avec nos conseillers pour constituer votre dossier d'admission.</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+              Prêt à lancer votre carrière ?
+            </h2>
           </div>
-          <motion.a 
-            href="#contact" 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-10 rounded-full text-lg shadow-xl inline-flex items-center gap-3"
-          >
-            <CalendarCheck size={24} />
-            Prendre Rendez-vous
-          </motion.a>
+
+          {/* TEXTE ET BOUTON EN BAS, SUR LA MÊME LIGNE */}
+          <div className="flex flex-col md:flex-row items-end justify-between gap-6">
+            <p className="text-gray-200 text-lg md:text-xl max-w-lg drop-shadow-md">
+              Prenez rendez-vous avec nos conseillers pour constituer votre dossier d'admission.
+            </p>
+            
+            <motion.a 
+              href="#contact" 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white/20 backdrop-blur-md border border-white/40 text-white font-medium py-3 px-8 rounded-full text-base shadow-lg hover:bg-green-500 hover:text-white transition-colors"
+            >
+              <span className="inline-flex items-center gap-2">
+                <CalendarCheck size={20} />
+                Prendre Rendez-vous
+              </span>
+            </motion.a>
+          </div>
+
         </div>
       </section>
 
