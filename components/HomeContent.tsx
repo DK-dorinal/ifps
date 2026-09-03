@@ -68,39 +68,39 @@ export default function HomeContent() {
   return (
     <div className={`${comfortaa.className} min-h-screen bg-gray-50`}>
 
-      {/* ================= CARROUSEL HERO ================= */}
-      <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden pt-[20vh] pb-[10vh] border-[2cm] border-gray-100 rounded-[15px]">
+      {/* ================= CARROUSEL HERO - SANS MARGES SUR MOBILE ================= */}
+      <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden pt-[20vh] pb-[10vh] border-0 md:border-[2cm] border-gray-100 rounded-none md:rounded-[15px]">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-[2cm] transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
+            className={`absolute inset-0 md:inset-[2cm] transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
           >
-            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover rounded-[15px]" />
+            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover rounded-none md:rounded-[15px]" />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent rounded-[15px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent rounded-none md:rounded-[15px]"></div>
 
             <div className="absolute inset-0 flex items-end pb-[15vh]">
-              <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
+              <div className="max-w-7xl mx-auto px-4 md:px-10 w-full">
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
-                  className={`max-w-3xl p-10 rounded-[15px] backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl ${slide.color}`}
+                  className={`max-w-3xl p-6 md:p-10 rounded-none md:rounded-[15px] backdrop-blur-xl bg-white/20 border border-white/40 shadow-2xl ${slide.color}`}
                 >
-                  <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
+                  <h1 className="text-3xl md:text-6xl font-extrabold text-white mb-4 md:mb-6">
                     {slide.title}
                   </h1>
-                  <p className="text-white text-xl md:text-2xl mb-10 leading-relaxed text-justify">
+                  <p className="text-white text-base md:text-2xl mb-6 md:mb-10 leading-relaxed text-justify">
                     {slide.description}
                   </p>
                   <motion.a
                     href="/#rdv"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-3 bg-white text-blue-900 font-bold py-4 px-10 rounded-[15px] text-lg shadow-xl hover:bg-green-500 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-3 bg-white text-blue-900 font-bold py-3 md:py-4 px-6 md:px-10 rounded-[15px] text-sm md:text-lg shadow-xl hover:bg-green-500 hover:text-white transition-colors"
                   >
-                    <CalendarCheck size={24} />
+                    <CalendarCheck size={20} className="md:w-6 md:h-6" />
                     Prendre Rendez-vous
                   </motion.a>
                 </motion.div>
@@ -109,21 +109,23 @@ export default function HomeContent() {
           </div>
         ))}
 
-        <div className="absolute bottom-[calc(2cm+2rem)] right-[calc(2cm+2rem)] z-10 flex gap-2">
-          <button onClick={prevSlide} className="bg-white/20 backdrop-blur-md border border-white/50 p-3 rounded-[15px] text-white hover:bg-white hover:text-blue-900 transition">
-            <ChevronLeft size={20} />
+        {/* Boutons de navigation - repositionnés sur mobile */}
+        <div className="absolute bottom-[calc(2rem)] right-4 md:right-[calc(2cm+2rem)] z-10 flex gap-2">
+          <button onClick={prevSlide} className="bg-white/20 backdrop-blur-md border border-white/50 p-2 md:p-3 rounded-[15px] text-white hover:bg-white hover:text-blue-900 transition">
+            <ChevronLeft size={16} className="md:w-5 md:h-5" />
           </button>
-          <button onClick={nextSlide} className="bg-white/20 backdrop-blur-md border border-white/50 p-3 rounded-[15px] text-white hover:bg-white hover:text-blue-900 transition">
-            <ChevronRight size={20} />
+          <button onClick={nextSlide} className="bg-white/20 backdrop-blur-md border border-white/50 p-2 md:p-3 rounded-[15px] text-white hover:bg-white hover:text-blue-900 transition">
+            <ChevronRight size={16} className="md:w-5 md:h-5" />
           </button>
         </div>
 
-        <div className="absolute bottom-[calc(2cm+3.5rem)] right-[calc(2cm+2rem)] flex gap-3">
+        {/* Indicateurs de slides - repositionnés sur mobile */}
+        <div className="absolute bottom-[calc(3.5rem)] right-4 md:bottom-[calc(2cm+3.5rem)] md:right-[calc(2cm+2rem)] flex gap-3">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-2.5 rounded-[15px] transition-all ${idx === currentSlide ? "bg-white w-8" : "bg-white/40 w-2.5"}`}
+              className={`h-2 rounded-[15px] transition-all ${idx === currentSlide ? "bg-white w-6 md:w-8" : "bg-white/40 w-2"}`}
             />
           ))}
         </div>
