@@ -27,20 +27,20 @@ export default function HomePage({
       <header
         className={`${comfortaa.className} fixed left-1/2 top-5 z-[1000] flex h-[10vh] max-h-[110px] min-h-[70px] w-[92%] max-w-[1200px] -translate-x-1/2 items-center justify-between rounded-full bg-[rgba(255,255,255,0.9)] backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-6 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] md:px-4 sm:w-[96%] sm:h-[10vh] sm:min-h-[60px]`}
       >
-        {/* LOGO À GAUCHE, EN DÉBORDEMENT */}
+        {/* LOGO À GAUCHE, EN DÉBORDEMENT - 40px sur mobile */}
         <Link
           href="/"
-          className="absolute left-6 -top-8 z-10 flex-shrink-0 md:left-4 md:-top-6 sm:-top-4"
+          className="absolute left-6 -top-1 z-10 flex-shrink-0 md:left-4 md:-top-6 sm:left-2 sm:top-0"
         >
           <img
             src="/logo.png"
             alt="IFPS Ngousso Logo"
-            className="h-36 w-auto object-contain transition-all duration-500 ease-out hover:scale-105 drop-shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:drop-shadow-[0_10px_35px_rgba(34,197,94,0.55)] md:h-28 sm:h-20"
+            className="h-20 w-auto object-contain transition-all duration-500 ease-out hover:scale-105 drop-shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:drop-shadow-[0_10px_35px_rgba(34,197,94,0.55)] md:h-28 sm:h-[40px]"
           />
         </Link>
 
         {/* Espace réservé pour laisser la place au logo qui déborde */}
-        <div className="w-32 flex-shrink-0 md:w-24 sm:w-16" />
+        <div className="w-32 flex-shrink-0 md:w-24 sm:w-12" />
 
         {/* LIENS CENTRÉS - Cachés sur mobile */}
         <nav className="hidden md:flex flex-1 items-center justify-center gap-1 text-sm font-medium text-gray-600">
