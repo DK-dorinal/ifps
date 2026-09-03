@@ -1,0 +1,121 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // ou "mysql" ou "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Table des utilisateurs
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String   // Le mot de passe sera hashé
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  sessions  Session[]
+  analytics Analytics? // Un utilisateur peut avoir une analyse (optionnel)
+
+  @@map("users")
+}
+
+// Table des sessions (pour la gestion des connexions)
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("sessions")
+}
+
+// Table des analytics (pour suivre les visites et positions)
+model Analytics {
+  id          String   @id @default(cuid())
+  userId      String?  // Optionnel, si l'utilisateur est connecté
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  // Informations de localisation
+  country     String?  // Pays du visiteur
+  region      String?  // Région/État
+  city        String?  // Ville
+  latitude    Float?   // Latitude (géolocalisation)
+  longitude   Float?   // Longitude (géolocalisation)
+  
+  // Informations techniques
+  ipAddress   String?  // Adresse IP
+  userAgent   String?  // Navigateur, OS
+  deviceType  String?  // Desktop, Mobile, Tablet
+  browser     String?  // Chrome, Firefox, Safari
+  os          String?  // Windows, macOS, Linux, iOS, Android
+  
+  // Informations de navigation
+  pageUrl     String?  // Page visitée
+  referrer    String?  // Page source
+  pathname    String?  // Chemin de la page
+  
+  // Métriques
+  viewDuration Int?    // Durée de la visite en secondes
+  scrollDepth  Int?    // Pourcentage de défilement
+  
+  // Horodatage
+  visitedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([visitedAt])
+  @@index([country])
+  @@index([pageUrl])
+  @@map("analytics")
+}
+
+// Table des pages (pour suivre les vues par page)
+model PageView {
+  id          String   @id @default(cuid())
+  pageUrl     String   // URL de la page
+  title       String?  // Titre de la page
+  viewCount   Int      @default(1) // Nombre de vues
+  lastViewed  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  analytics   Analytics[] // Les analyses associées à cette page
+
+  @@unique([pageUrl])
+  @@map("page_views")
+}
+
+// Enumération des rôles
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+// Table des logs de visite (détail des visites)
+model VisitLog {
+  id          String   @id @default(cuid())
+  sessionId   String?  // ID de session
+  pageUrl     String   // Page visitée
+  referrer    String?  // Provenance
+  
+  // Horodatage
+  visitedAt   DateTime @default(now())
+  
+  // Analytics associés
+  analyticsId String?
+  analytics   Analytics? @relation(fields: [analyticsId], references: [id], onDelete: SetNull)
+
+  @@index([visitedAt])
+  @@index([pageUrl])
+  @@map("visit_logs")
+}
