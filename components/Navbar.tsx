@@ -23,9 +23,9 @@ export default function HomePage({
 
   return (
     <>
-      {/* HEADER PRINCIPAL */}
+      {/* HEADER PRINCIPAL - 10vh */}
       <header
-        className={`${comfortaa.className} fixed left-1/2 top-5 z-[1000] flex h-[15vh] max-h-[110px] min-h-[70px] w-[92%] max-w-[1200px] -translate-x-1/2 items-center justify-between rounded-full bg-[rgba(255,255,255,0.9)] backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-6 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] md:px-4 sm:w-[96%] sm:h-[12vh] sm:min-h-[60px]`}
+        className={`${comfortaa.className} fixed left-1/2 top-5 z-[1000] flex h-[10vh] max-h-[110px] min-h-[70px] w-[92%] max-w-[1200px] -translate-x-1/2 items-center justify-between rounded-full bg-[rgba(255,255,255,0.9)] backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-6 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] md:px-4 sm:w-[96%] sm:h-[10vh] sm:min-h-[60px]`}
       >
         {/* LOGO À GAUCHE, EN DÉBORDEMENT */}
         <Link
@@ -109,53 +109,53 @@ export default function HomePage({
         </div>
       </header>
 
-      {/* BARRE DE NAVIGATION MOBILE EN BAS */}
-      <nav className="fixed bottom-0 left-0 z-[999] w-full bg-white/95 backdrop-blur-xl border-t border-gray-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] md:hidden">
-        <div className="flex items-center justify-around h-16 px-2">
+      {/* BARRE DE NAVIGATION MOBILE EN BAS - 10vh avec bordure radius 15px */}
+      <nav className="fixed bottom-0 left-0 z-[999] w-full bg-white/95 backdrop-blur-xl border-t border-gray-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] md:hidden rounded-t-[15px] overflow-hidden">
+        <div className="flex items-center justify-around h-[10vh] min-h-[60px] max-h-[80px] px-2">
           <Link
             href="/"
-            className="flex flex-col items-center gap-0.5 text-xs text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
+            className="flex flex-col items-center gap-0.5 text-[10px] text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
           >
-            <i className="fas fa-home text-lg" />
+            <i className="fas fa-home text-base" />
             <span>Accueil</span>
           </Link>
 
           <Link
             href="/formations"
-            className="flex flex-col items-center gap-0.5 text-xs text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
+            className="flex flex-col items-center gap-0.5 text-[10px] text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
           >
-            <i className="fas fa-graduation-cap text-lg" />
+            <i className="fas fa-graduation-cap text-base" />
             <span>Formations</span>
           </Link>
 
           <Link
             href="/admissions"
-            className="flex flex-col items-center gap-0.5 text-xs text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
+            className="flex flex-col items-center gap-0.5 text-[10px] text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
           >
-            <i className="fas fa-file-signature text-lg" />
+            <i className="fas fa-file-signature text-base" />
             <span>Admissions</span>
           </Link>
 
           <Link
             href="/#rdv"
-            className="flex flex-col items-center gap-0.5 text-xs text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
+            className="flex flex-col items-center gap-0.5 text-[10px] text-gray-500 transition-all duration-200 hover:text-green-600 active:scale-95"
           >
-            <i className="fas fa-envelope text-lg" />
+            <i className="fas fa-envelope text-base" />
             <span>Contact</span>
           </Link>
 
           <Link
             href="/rendez-vous"
-            className="flex flex-col items-center gap-0.5 text-xs text-green-600 transition-all duration-200 hover:text-green-700 active:scale-95"
+            className="flex flex-col items-center gap-0.5 text-[10px] text-green-600 transition-all duration-200 hover:text-green-700 active:scale-95"
           >
-            <i className="fas fa-calendar-check text-lg" />
+            <i className="fas fa-calendar-check text-base" />
             <span>RDV</span>
           </Link>
         </div>
       </nav>
 
       {/* ESPACE POUR ÉVITER QUE LE CONTENU SOIT CACHÉ PAR LA BARRE DU BAS */}
-      <div className="h-16 md:hidden" />
+      <div className="h-[10vh] min-h-[60px] max-h-[80px] md:hidden" />
     </>
   );
 }
